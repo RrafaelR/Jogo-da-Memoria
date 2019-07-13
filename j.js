@@ -1,53 +1,53 @@
 const cards = document.querySelectorAll('.memory-card');
 
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
+let fip = false;
+let block = false;
+let primeiracart, segundacart;
 
 function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return;
+  if (block) return;
+  if (this === primeiracart) return;
 
   this.classList.add('flip');
 
-  if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstCard = this;
+  if (!fip) {
+    fip = true;
+    primeiracart = this;
 
     return;
   }
 
-  secondCard = this;
+  segundacart = this;
   checkForMatch();
 }
 
 function checkForMatch() {
-  let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+  let isMatch = primeiracart.dataset.framework === segundacart.dataset.framework;
 
   isMatch ? disableCards() : unflipCards();
 }
 
 function disableCards() {
-  firstCard.removeEventListener('click', flipCard);
-  secondCard.removeEventListener('click', flipCard);
+  primeiracart.removeEventListener('click', flipCard);
+  segundacart.removeEventListener('click', flipCard);
 
   resetBoard();
 }
 
 function unflipCards() {
-  lockBoard = true;
+  block = true;
 
   setTimeout(() => {
-    firstCard.classList.remove('flip');
-    secondCard.classList.remove('flip');
+    primeiracart.classList.remove('flip');
+    segundacart.classList.remove('flip');
 
     resetBoard();
   }, 1500);
 }
 
 function resetBoard() {
-  [hasFlippedCard, lockBoard] = [false, false];
-  [firstCard, secondCard] = [null, null];
+  [fip, block] = [false, false];
+  [primeiracart, segundacart] = [null, null];
 }
 
 (function shuffle() {
