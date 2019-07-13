@@ -38,8 +38,8 @@
     transform: rotateY(180deg);
   }
   
-  .front-face,
-  .back-face {
+  .frente-face,
+  .tras-face {
     width: 100%;
     height: 100%;
     padding: 20px;
@@ -49,6 +49,6 @@
     backface-visibility: hidden;
   }
   
-  .front-face {
+  .frente-face {
     transform: rotateY(180deg);
   }
